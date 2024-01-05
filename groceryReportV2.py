@@ -122,9 +122,11 @@ def loopProducts(driver,special=""):
             return False
 
         action_chains = ActionChains(driver)
-        action_chains.move_to_element(allInfoButton[i])
-        action_chains.click(allInfoButton[i])
-        action_chains.perform()
+        try:
+            action_chains.move_to_element(allInfoButton[i]).perform()
+        except:
+            print("hi")
+        action_chains.click(allInfoButton[i]).perform()
 
         WebDriverWait(driver, 10).until(
             EC.visibility_of_all_elements_located(
@@ -224,8 +226,7 @@ def handelReport(cat2dArray,currentItem,isScanned,currentSubCat,isSubCatIsTheOnl
     total = catTotalCount(cat2dArray)
     isThisTheLastIteminSub = checkIfElementIsLastInSubCat(arrOfAll[arrOfAllCatCounter][i],currentItem)
 
-    if currentItem == "Powder":
-        print()
+
 
     if isScanned:
         healthyCounter += 1
