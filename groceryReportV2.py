@@ -107,7 +107,7 @@ def loopProducts(driver,special=""):
 
     #testing
     #print(len(allProducts) , "Enabled Products")
-    for i in range(len(allProducts)):
+    for i in range(len(allInfoButton)):
         #print("Product number ",i)
         if (special=="Outers" and not isOuter(allMultiplierQuantities[i])) \
                 or(special == "Normal Diapers" and not checkIfItemIsNormalBabyDiapers(allProductsTypes[i])) \
@@ -207,16 +207,25 @@ def catTotalCount(cat2dArray):
                 count += 1
     return count
 
-
+def checkIfElementIsLastInSubCat(subCatArray,element):
+    if subCatArray.index(element) == len(subCatArray)-1:
+        return True
+    return False
 def handelReport(cat2dArray,currentItem,isScanned,currentSubCat,isSubCatIsTheOnlyElement=False):
     global catReportResult
     global healthyCounter
     global emptyCatCounter
     global didIusedTheyDoNotKeep
+    global notKeepList
+    global arrOfAll
+    global arrOfAllCatCounter
+    global i
 
     total = catTotalCount(cat2dArray)
+    isThisTheLastIteminSub = checkIfElementIsLastInSubCat(arrOfAll[arrOfAllCatCounter][i],currentItem)
 
-
+    if currentItem == "Powder":
+        print()
 
     if isScanned:
         healthyCounter += 1
@@ -228,8 +237,18 @@ def handelReport(cat2dArray,currentItem,isScanned,currentSubCat,isSubCatIsTheOnl
         if isSubCatIsTheOnlyElement:
             catReportResult += f"{currentItem}\n"
         else:
-            catReportResult += f"{currentSubCat} -> ({currentItem})\n"
+            notKeepList.append(currentItem)
+
+
         emptyCatCounter += 1
+
+    if isThisTheLastIteminSub and len(notKeepList) > 0:
+        catReportResult += f"{currentSubCat} -> ("
+        for element in notKeepList:
+            catReportResult += f"{element}, "
+        catReportResult = catReportResult[:-2]
+        catReportResult += ")\n"
+        notKeepList.clear()
 
     if healthyCounter == total:
         catReportResult = "Category Looks Healthy."
@@ -240,6 +259,7 @@ def handelReport(cat2dArray,currentItem,isScanned,currentSubCat,isSubCatIsTheOnl
 
     if healthyCounter + emptyCatCounter == total:
         catReportResult += "Because of not fast moving products"
+
 
 
 
@@ -803,6 +823,7 @@ arrOfAll = [[  # auto
 
 arrOfAllCatCounter = 0
 print()
+notKeepList=[]
 
 
 
@@ -838,6 +859,7 @@ for element in categories:
         emptyCatCounter = 0
         didIusedTheyDoNotKeep = False  # did we write they do not keep the below items ? , as we will not write it twice
         for i in range(1,len(arrOfAll[arrOfAllCatCounter])):
+
 
 
             for j in range(len(arrOfAll[arrOfAllCatCounter][i])):
