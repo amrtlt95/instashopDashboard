@@ -122,10 +122,10 @@ def loopProducts(driver,special=""):
             return False
 
         action_chains = ActionChains(driver)
-        try:
-            action_chains.move_to_element(allInfoButton[i]).perform()
-        except:
-            print("hi")
+
+        action_chains.move_to_element(allInfoButton[i]).perform()
+        time.sleep(0.5)
+
         action_chains.click(allInfoButton[i]).perform()
 
         WebDriverWait(driver, 10).until(
@@ -289,15 +289,6 @@ categories = WebDriverWait(fullDashboardCategories,50).until(
   #initial variables
 
 
-alexPeople=["Amr Khalil",
-            "Osama Mahmoud",
-            "Mahmoud Eissa",
-            "Abdelmaged Maged",
-            "Maged Youssef",
-            "Ahmed Mohamed",
-            "Hossam ElAkad",
-            "Ahmed Abdelazim"
-            ]
 arrOfAll = [[  # auto
     ["Auto"],
     ["Interior Care"],
@@ -607,12 +598,12 @@ arrOfAll = [[  # auto
     [
         ["Hygiene & Personal Care"],
         ["Mouthwash, Floss & Others", "Mouthwash", "Toothpicks"],
-        ["Toothbrushes", "Toothbrushes"],
+        ["Toothbrushes"],
         ["Foot Care", "Foot Powder", "Shoe Spray", "Foot Cream", "Foot Mask"],
         ["Women Deo", "Spray", "Stick", "Roll"],
         ["Women Shaving", "Razors", "Paste", "Cream", "Strips"],
         ["Men Shaving", "Razors", "Gel", "Foam", "After Shave", "Cream"],
-        ["Toothpastes", "Toothpastes"],
+        ["Toothpastes"],
         ["Men Deo", "Spray", "Roll", "Stick"],
         ["Adult Pads & Diapers", "Adult Diapers"],
         ["Sanitizers", "Alcohol Solutions", "Antibacterial", "Hand Sanitizers", "Skin Wipes"],
@@ -799,7 +790,7 @@ arrOfAll = [[  # auto
         ["Tofu & Others"],
         ["Meat Alternatives"],
         ["Cheese, Spreads & Creams"],
-        ["Yogurts"],
+        ["Yogurts"]
 
     ]
     ,
@@ -821,8 +812,17 @@ arrOfAll = [[  # auto
 
     ]
 ]
+alexPeople=["Amr Khalil",
+            "Osama Mahmoud",
+            "Mahmoud Eissa",
+            "Abdelmaged Maged",
+            "Maged Youssef",
+            "Ahmed Mohamed",
+            "Hossam ElAkad",
+            "Ahmed Abdelazim"
+            ]
 
-arrOfAllCatCounter = 0
+arrOfAllCatCounter = 23
 print()
 notKeepList=[]
 
