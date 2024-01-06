@@ -465,13 +465,13 @@ def findCorrectVertical(driver , bussniessType):
     elif bussniessType == 2:
         fullDashboardCategories = WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located(
-                (By.XPATH, "/html/body/div[1]/div[9]/div[145]/div[7]/div[1]/ul/div[5]"))
+                (By.XPATH, "/html/body/div[1]/div[9]/div[146]/div[7]/div[1]/ul/div[5]"))
         )
     elif bussniessType == 3:
 
         fullDashboardCategories = WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located(
-                (By.XPATH, "/html/body/div[1]/div[9]/div[146]/div[7]/div[1]/ul/div[12]/div"))
+                (By.XPATH, "/html/body/div[1]/div[9]/div[146]/div[7]/div[1]/ul/div[12]"))
         )
 
     elif bussniessType == 4:
