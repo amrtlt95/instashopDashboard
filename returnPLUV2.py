@@ -11,7 +11,7 @@ searchTextBox=returnProductsSearchTextBox(driver)
 try:
     for id_ in idsList:
         searchTextBox.send_keys(id_)
-        productsSearchButton(driver).click()
+        searchTextBox.send_keys(Keys.ENTER)
         waitForLoading(driver)
         waitForFakeLoading(driver)
         time.sleep(2)
