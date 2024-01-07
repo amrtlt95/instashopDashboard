@@ -19,10 +19,10 @@ try:
         returnBarcodeAndPLUBoxButton(driver).click()
         waitForFakeLoading(driver)
         WebDriverWait(driver,60).until(
-            EC.visibility_of_element_located((By.XPATH,"/html/body/div[1]/div[9]/div[113]/div/div/div/div/div[2]"))
+            EC.visibility_of_element_located((By.XPATH,"//h6[contains(text(), 'Barcodes of this product')]"))
         )
         Barcodes = driver.find_elements(By.XPATH,'/html/body/div[1]/div[9]/div[113]/div/div/div/div/div[2]//input[@placeholder="barcode"]')
-        PLUs = driver.find_elements(By.XPATH,'/html/body/div[1]/div[9]/div[113]/div/div/div/div/div[2]//input[@placeholder="Plu"]')
+
         innerPLUs = ""
         innerBarcodes = ""
         flag = True
@@ -32,12 +32,17 @@ try:
             allPLUsList.append("No PLUs")
 
         if flag:
+            WebDriverWait(driver,10).until(
+                EC.visibility_of_all_elements_located((By.XPATH,'/html/body/div[1]/div[9]/div[113]/div/div/div/div/div[2]//input[@placeholder="Plu"]'))
+            )
+            PLUs = driver.find_elements(By.XPATH,
+                                        '/html/body/div[1]/div[9]/div[113]/div/div/div/div/div[2]//input[@placeholder="Plu"]')
 
             for PLU in PLUs:
 
                 innerPLUs += PLU.get_attribute("value")+" , "
 
-            allPLUsList.append(innerPLUs[:-2])
+            allPLUsList.append(innerPLUs[:-3])
 
         flag = True
 
@@ -48,7 +53,7 @@ try:
                 break
             innerBarcodes += barcode.get_attribute("value")+" , "
         if flag:
-            allBarcodes.append(innerBarcodes[:-2])
+            allBarcodes.append(innerBarcodes[:-3])
         driver.find_element(By.XPATH,"/html/body/div[1]/div[9]/div[113]/div/div/div/div/div[4]/button[1]").click()
         WebDriverWait(driver,60).until(
             EC.invisibility_of_element_located((By.XPATH,"/html/body/div[1]/div[9]/div[113]/div/div/div/div/div[2]"))
