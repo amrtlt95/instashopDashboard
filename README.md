@@ -1,6 +1,6 @@
-# Instashop Assortment Merchandiser Automation
+#Assortment Merchandiser Automation
 
-This project automates various tasks related to the assortment merchandiser role in Instashop. Certain sensitive information has been excluded from the project to safeguard Instashop data.
+This project automates various tasks related to the assortment merchandiser role. Certain sensitive information has been excluded from the project to safeguard dashboard data.
 
 ## Files Included
 
