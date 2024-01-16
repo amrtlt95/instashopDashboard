@@ -1,5 +1,5 @@
 from SetupProfile import *
-driver.get("https://instashop.ae/dashboard/index.html#/admin") #open the dashboard
+driver.get("") #open the dashboard
 try: #handle the login screen if it appeared
     # try to find the element by its CSS selector
     element = WebDriverWait(driver,5).until(
